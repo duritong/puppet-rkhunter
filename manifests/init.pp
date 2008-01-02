@@ -22,7 +22,7 @@ class rkhunter {
 #                	source => "puppet://$servername/rkhunter/rkhunter.conf",
 #        		ensure => file,
 #        		force => true,
-#        		mode => 0644, owner => root, group => root;
+#        		mode => 0644, owner => root, group => 0;
 #        }
 	
 }
