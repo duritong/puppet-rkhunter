@@ -13,17 +13,14 @@ class rkhunter {
                         default => '',
                 },
         }
-
-
-	#service { rkhunter: ensure  => running, enable  => true, }
-
-#	file {
-#        	"/etc/rkhunter/rkhunter.conf":
-#                	source => "puppet://$servername/rkhunter/rkhunter.conf",
-#        		ensure => file,
-#        		force => true,
-#        		mode => 0644, owner => root, group => 0;
-#        }
-	
 }
 
+define rkhunter::config($source)
+    file {
+        "/var/lib/rkhunter/rkhunter.db":
+            source => "puppet://$servername/$source",
+            ensure => file,
+            force => true,
+            mode => 0400, owner => root, group => root;
+     }
+}
