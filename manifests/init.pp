@@ -15,7 +15,7 @@ class rkhunter {
         }
 }
 
-define rkhunter::config($source)
+define rkhunter::config($source){
     file {
         "/var/lib/rkhunter/rkhunter.db":
             source => "puppet://$servername/$source",
