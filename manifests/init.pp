@@ -18,8 +18,7 @@ class rkhunter::base {
         ensure => present,
     }
 
-    file {
-        "/etc/rkhunter.conf"
+    file {"/etc/rkhunter.conf":
             source => [ "puppet://$servername/files/rkhunter/${fqdn}/rkhunter.config",
                         "puppet://$servername/files/rkhunter/rkhunter.config",
                         "puppet://$servername/rkhunter/rkhunter.config" ],
