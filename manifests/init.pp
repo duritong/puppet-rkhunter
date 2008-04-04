@@ -13,7 +13,7 @@ class rkhunter {
 
 }
 
-class rkhunter::base
+class rkhunter::base {
 	package { 'rkhunter':
         ensure => present,
     }
