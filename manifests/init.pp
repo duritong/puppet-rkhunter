@@ -6,21 +6,31 @@
 
 class rkhunter {
 
-	package { 'rkhunter':
-                ensure => present,
-                category => $operatingsystem ? {
-                        gentoo => 'app-forensics',
-                        default => '',
-                },
-        }
+    case $operatingsystem {
+        gentoo: { include rkhunter::gentoo }
+        default: { include rkhunter::base }
+    }
+
 }
 
-define rkhunter::config($source){
+class rkhunter::base
+	package { 'rkhunter':
+        ensure => present,
+    }
+
     file {
-        "/var/lib/rkhunter/rkhunter.db":
-            source => "puppet://$servername/$source",
+        "/etc/rkhunter.conf"
+            source => [ "puppet://$servername/files/rkhunter/${fqdn}/rkhunter.config",
+                        "puppet://$servername/files/rkhunter/rkhunter.config",
+                        "puppet://$servername/rkhunter/rkhunter.config" ],
             ensure => file,
             force => true,
             mode => 0400, owner => root, group => root;
      }
+}
+
+class rkhunter::gentoo inherits rkhunter::base {
+    Package[rkhunter]{
+        category => 'app-forensics',
+    }
 }
