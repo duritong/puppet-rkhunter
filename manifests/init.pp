@@ -19,9 +19,9 @@ class rkhunter::base {
     }
 
     file {"/etc/rkhunter.conf":
-            source => [ "puppet://$servername/files/rkhunter/${fqdn}/rkhunter.config",
-                        "puppet://$servername/files/rkhunter/rkhunter.config",
-                        "puppet://$servername/rkhunter/rkhunter.config" ],
+            source => [ "puppet://$server/files/rkhunter/${fqdn}/rkhunter.config",
+                        "puppet://$server/files/rkhunter/rkhunter.config",
+                        "puppet://$server/rkhunter/rkhunter.config" ],
             ensure => file,
             force => true,
             mode => 0400, owner => root, group => root;
