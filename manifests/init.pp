@@ -28,11 +28,14 @@ class rkhunter::base {
 	        require => Package['rkhunter'],
             mode => 0400, owner => root, group => root;
      }
-
-    exec{'init_rkunter_db':
-        command => 'rkhunter --propupd',
-        creates => '/var/lib/rkhunter/db/rkhunter.dat',
-	    require => Package['rkhunter'],
+    case $operatingsystem {
+        debian: {
+            case $lsbdistcodename {
+                '': { info("no need to ini the database") }
+                default: { include rkhunter::dbinit }
+            }
+        }
+        default: { include rkhunter::dbinit }
     }
 }
 
