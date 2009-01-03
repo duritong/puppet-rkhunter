@@ -18,11 +18,11 @@ class rkhunter::base {
     }
 
     file {"/etc/rkhunter.conf":
-            source => [ "puppet://$server/files/rkhunter/${fqdn}/rkhunter.config",
-                        "puppet://$server/files/rkhunter/${operatingsystem}/rkhunter.config",
-                        "puppet://$server/files/rkhunter/rkhunter.config",
-                        "puppet://$server/rkhunter/${operatingsystem}/rkhunter.config",
-                        "puppet://$server/rkhunter/rkhunter.config" ],
+            source => [ "puppet://$server/files/rkhunter/${fqdn}/rkhunter.conf",
+                        "puppet://$server/files/rkhunter/${operatingsystem}/rkhunter.conf",
+                        "puppet://$server/files/rkhunter/rkhunter.conf",
+                        "puppet://$server/rkhunter/${operatingsystem}/rkhunter.conf",
+                        "puppet://$server/rkhunter/rkhunter.conf" ],
 	        require => Package['rkhunter'],
             mode => 0400, owner => root, group => root;
      }
