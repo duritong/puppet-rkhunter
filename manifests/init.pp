@@ -31,7 +31,7 @@ class rkhunter::base {
     case $operatingsystem {
         debian: {
             case $lsbdistcodename {
-                '': { info("no need to ini the database") }
+                'etch': { info("no need to ini the database") }
                 default: { include rkhunter::dbinit }
             }
         }
