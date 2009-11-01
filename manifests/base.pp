@@ -8,9 +8,9 @@ class rkhunter::base {
                 "puppet://$server/files/rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
                 "puppet://$server/files/rkhunter/${operatingsystem}/rkhunter.conf",
                 "puppet://$server/files/rkhunter/rkhunter.conf",
-                "puppet://$server/rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
-                "puppet://$server/rkhunter/${operatingsystem}/rkhunter.conf",
-                "puppet://$server/rkhunter/rkhunter.conf" ],
+                "puppet://$server/modules/rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
+                "puppet://$server/modules/rkhunter/${operatingsystem}/rkhunter.conf",
+                "puppet://$server/modules/rkhunter/rkhunter.conf" ],
     require => Package['rkhunter'],
     mode => 0400, owner => root, group => root;
   }
