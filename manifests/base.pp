@@ -4,10 +4,10 @@ class rkhunter::base {
   }
 
   file {"/etc/rkhunter.conf":
-    source => [ "puppet://$server/files/rkhunter/${fqdn}/rkhunter.conf",
-                "puppet://$server/files/rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
-                "puppet://$server/files/rkhunter/${operatingsystem}/rkhunter.conf",
-                "puppet://$server/files/rkhunter/rkhunter.conf",
+    source => [ "puppet://$server/modules/site-rkhunter/${fqdn}/rkhunter.conf",
+                "puppet://$server/modules/site-rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
+                "puppet://$server/modules/site-rkhunter/${operatingsystem}/rkhunter.conf",
+                "puppet://$server/modules/site-rkhunter/rkhunter.conf",
                 "puppet://$server/modules/rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
                 "puppet://$server/modules/rkhunter/${operatingsystem}/rkhunter.conf",
                 "puppet://$server/modules/rkhunter/rkhunter.conf" ],
