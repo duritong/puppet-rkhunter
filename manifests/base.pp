@@ -1,5 +1,5 @@
 class rkhunter::base {
-	package { 'rkhunter':
+  package { 'rkhunter':
     ensure => present,
   }
 
