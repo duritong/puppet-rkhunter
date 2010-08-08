@@ -4,13 +4,13 @@ class rkhunter::base {
   }
 
   file {"/etc/rkhunter.conf":
-    source => [ "puppet://$server/modules/site-rkhunter/${fqdn}/rkhunter.conf",
-                "puppet://$server/modules/site-rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
-                "puppet://$server/modules/site-rkhunter/${operatingsystem}/rkhunter.conf",
-                "puppet://$server/modules/site-rkhunter/rkhunter.conf",
-                "puppet://$server/modules/rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
-                "puppet://$server/modules/rkhunter/${operatingsystem}/rkhunter.conf",
-                "puppet://$server/modules/rkhunter/rkhunter.conf" ],
+    source => [ "puppet:///modules/site-rkhunter/${fqdn}/rkhunter.conf",
+                "puppet:///modules/site-rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
+                "puppet:///modules/site-rkhunter/${operatingsystem}/rkhunter.conf",
+                "puppet:///modules/site-rkhunter/rkhunter.conf",
+                "puppet:///modules/rkhunter/${operatingsystem}/${lsbdistcodename}/rkhunter.conf",
+                "puppet:///modules/rkhunter/${operatingsystem}/rkhunter.conf",
+                "puppet:///modules/rkhunter/rkhunter.conf" ],
     require => Package['rkhunter'],
     mode => 0400, owner => root, group => root;
   }
