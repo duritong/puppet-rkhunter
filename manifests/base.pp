@@ -25,7 +25,7 @@ class rkhunter::base {
   }
 
   file{'/usr/local/sbin/rkhunter_prelinker':
-    source => '"puppet:///modules/rkhunter/prelinker.rb',
+    source => 'puppet:///modules/rkhunter/prelinker.rb',
     require => File['/etc/rkhunter.conf'],
     owner => root, group => 0, mode => 0700;
   }
