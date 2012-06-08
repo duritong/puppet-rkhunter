@@ -3,7 +3,7 @@
 # 
 
 class rkhunter {
-  case $operatingsystem {
+  case $::operatingsystem {
     gentoo: { include rkhunter::gentoo }
     centos: { include rkhunter::centos }
     default: { include rkhunter::base }
