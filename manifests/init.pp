@@ -1,7 +1,6 @@
-# modules/rkhunter/manifests/init.pp - manage rkhunter
+# manage rkhunter
 # Copyright (C) 2007 admin@immerda.ch
-# 
-
+#
 class rkhunter {
   case $::operatingsystem {
     gentoo: { include rkhunter::gentoo }

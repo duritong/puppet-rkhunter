@@ -1,9 +1,9 @@
+# manage centos
 class rkhunter::centos inherits rkhunter::base {
-  file{'/etc/sysconfig/rkhunter':
-    source => [ "puppet:///modules/site_rkhunter/sysconfig/${::fqdn}/rkhunter",
-                "puppet:///modules/site_rkhunter/sysconfig/rkhunter",
-                "puppet:///modules/rkhunter/sysconfig/rkhunter" ],
+  file_lin{'rkhunter_mail_root':
+    path    => '/etc/sysconfig/rkhunter',
+    line    => 'MAILTO=root',
+    match   => '^MAILTO=',
     require => Package['rkhunter'],
-    mode => 0644, owner => root, group => root;
   }
 }
