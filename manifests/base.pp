@@ -3,7 +3,7 @@ class rkhunter::base {
   package { 'rkhunter':
     ensure => present,
   } -> file{'/etc/rkhunter.conf.local': # all use specific changes can go in here
-    ensure  => 'present',
+    content => template('rkhunter/rkhunter.conf.local.erb'),
     owner   => root,
     group   => 0,
     mode    => '0400';
