@@ -9,16 +9,7 @@ class rkhunter::base {
     mode    => '0400';
   }
 
-  case $::operatingsystem {
-    debian: {
-      case $::lsbdistcodename {
-        'etch': { info('no need to init the database') }
-        default: { include rkhunter::dbinit }
-      }
-    }
-    default: { include rkhunter::dbinit }
-  }
-
+  include rkhunter::dbinit
   file{'/usr/local/sbin/rkhunter_prelinker':
     source  => 'puppet:///modules/rkhunter/prelinker.rb',
     require => File['/etc/rkhunter.conf.local'],
