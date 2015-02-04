@@ -2,7 +2,7 @@
 class rkhunter::base {
   package { 'rkhunter':
     ensure => present,
-  } -> file{'/etc/rkhunter.conf.local': # all use specific changes can go in here
+  } -> file{'/etc/rkhunter.conf.local': # all user specific changes can go here
     content => template('rkhunter/rkhunter.conf.local.erb'),
     owner   => root,
     group   => 0,
@@ -10,9 +10,10 @@ class rkhunter::base {
   }
 
   include rkhunter::dbinit
+  ensure_packages('prelink')
   file{'/usr/local/sbin/rkhunter_prelinker':
     source  => 'puppet:///modules/rkhunter/prelinker.rb',
-    require => File['/etc/rkhunter.conf.local'],
+    require => [File['/etc/rkhunter.conf.local'], Package['prelink']],
     owner   => root,
     group   => 0,
     mode    => '0700';

@@ -1,4 +1,4 @@
-#!/bin/env ruby
+#!/usr/bin/env ruby
 
 unless ARGV.shift == '--run'
   puts "This tool helps you to prelink binaries, that are showing up in rkhunter reports."
