@@ -1,3 +1,4 @@
+# puppet: configured over the $rkhunter::local_conf
 <% scope.lookupvar('rkhunter::local_conf').each do |line| -%>
 <%= line %>
 <% end -%>
