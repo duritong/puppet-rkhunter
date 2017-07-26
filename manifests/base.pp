@@ -5,7 +5,7 @@ class rkhunter::base {
   }
   # all user specific changes can go here
   concat{'/etc/rkhunter.conf.local':
-    owner   => root,
+    owner   => 'root',
     group   => 0,
     mode    => '0400',
     require => Package['rkhunter'],
@@ -21,7 +21,7 @@ class rkhunter::base {
   file{'/usr/local/sbin/rkhunter_prelinker':
     source  => 'puppet:///modules/rkhunter/prelinker.rb',
     require => [Concat['/etc/rkhunter.conf.local'], Package['prelink']],
-    owner   => root,
+    owner   => 'root',
     group   => 0,
     mode    => '0700';
   }
