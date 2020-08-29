@@ -17,12 +17,14 @@ class rkhunter::base {
   }
 
   include ::rkhunter::dbinit
-  ensure_packages('prelink')
-  file{'/usr/local/sbin/rkhunter_prelinker':
-    source  => 'puppet:///modules/rkhunter/prelinker.rb',
-    require => [Concat['/etc/rkhunter.conf.local'], Package['prelink']],
-    owner   => 'root',
-    group   => 0,
-    mode    => '0700';
+  if versioncmp($facts['os']['release']['major'],'8') < 0 {
+    ensure_packages('prelink')
+    file{'/usr/local/sbin/rkhunter_prelinker':
+      source  => 'puppet:///modules/rkhunter/prelinker.rb',
+      require => [Concat['/etc/rkhunter.conf.local'], Package['prelink']],
+      owner   => 'root',
+      group   => 0,
+      mode    => '0700';
+    }
   }
 }
