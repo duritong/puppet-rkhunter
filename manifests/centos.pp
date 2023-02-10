@@ -12,4 +12,18 @@ class rkhunter::centos inherits rkhunter::base {
       content => 'HASH_CMD=sha1sum',
     }
   }
+  if versioncmp($::operatingsystemmajrelease,'8') >= 0 {
+    require yum::centos::dnf_post_transaction
+    file {
+      default:
+        owner  => root,
+        group  => 0;
+      '/etc/dnf/plugins/post-transaction-actions.d/rkhunter.action':
+        source => 'puppet:///modules/rkhunter/dnf/rkhunter.action',
+        mode   => '0644';
+      '/etc/cron.daily/0rkhunter':
+        source => 'puppet:///modules/rkhunter/dnf/0rkhunter.cron',
+        mode   => '0755';
+    }
+  }
 }

@@ -1,0 +1,1 @@
+*:any:echo $name >> /var/lib/rkhunter/updated.txt
