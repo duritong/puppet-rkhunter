@@ -6,18 +6,18 @@ class rkhunter::centos inherits rkhunter::base {
     match   => '^MAILTO=',
     require => Package['rkhunter'],
   }
-  if versioncmp($::operatingsystemmajrelease,'7') < 0 {
+  if versioncmp($facts['os']['release']['major'],'7') < 0 {
     concat::fragment{'HASH_CMD':
       target  => '/etc/rkhunter.conf.local',
       content => 'HASH_CMD=sha1sum',
     }
   }
-  if versioncmp($::operatingsystemmajrelease,'8') >= 0 {
+  if versioncmp($facts['os']['release']['major'],'8') >= 0 {
     require yum::centos::dnf_post_transaction
     file {
       default:
-        owner  => root,
-        group  => 0;
+        owner => root,
+        group => 0;
       '/etc/dnf/plugins/post-transaction-actions.d/rkhunter.action':
         source => 'puppet:///modules/rkhunter/dnf/rkhunter.action',
         mode   => '0644';
